@@ -23,8 +23,9 @@ end
 function doctest_cmd(pkg::Symbol)
    mod = getproperty(@__MODULE__, pkg)
    setup = QuoteNode(isdefined(mod, :doctestsetup) ? mod.doctestsetup() : :(using $(pkg)))
+   filters = isdefined(mod, :doctestfilters) ? mod.doctestfilters() : []
    return quote
-             DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg)
+             DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters)
           end
 end
 
