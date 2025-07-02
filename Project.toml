@@ -1,7 +1,7 @@
 name = "OscarDevTools"
 uuid = "4f01c588-2833-446a-9dbd-6331d80acb41"
 authors = ["Benjamin Lorenz <lorenz@math.tu-berlin.de>"]
-version = "0.2.23"
+version = "0.2.24"
 
 [deps]
 GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
