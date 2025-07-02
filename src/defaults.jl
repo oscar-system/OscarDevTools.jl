@@ -2,7 +2,7 @@
 ### defaults for julia-version, os and branches
 
 const default_os = [ "ubuntu-latest" ]
-const default_julia = [ "~1.6.0-0", "~1.10.0-0" ]
+const default_julia = [ "~1.10.0-0" ]
 const default_branches = [ "<matching>", "release" ]
 
 # for each package this contains an ordered list with
