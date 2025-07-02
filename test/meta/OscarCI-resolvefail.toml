@@ -5,7 +5,7 @@ title = "metadata for oscar CI run"
 # the pull request and use master if that cannot be found
 [env]
 os = [ "ubuntu-latest" ]
-julia-version = [ "~1.6.0-0" ]
+julia-version = [ "~1.10.0-0" ]
 branches = [ "release" ]
 
 # pkgs without branches specified will use the global branches axis
