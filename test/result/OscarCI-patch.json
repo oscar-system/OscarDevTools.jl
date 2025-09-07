@@ -9,11 +9,13 @@
         "pkgs": {
           "Nemo": {
             "options": [],
-            "test": true
+            "test": true,
+            "branch": "master"
           },
           "Hecke": {
             "options": [],
-            "test": true
+            "test": true,
+            "branch": "master"
           }
         }
       },
