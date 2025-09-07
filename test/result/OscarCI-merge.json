@@ -1,0 +1,27 @@
+{
+  "cimat": {
+    "Polymake": [
+      {
+        "options": [],
+        "name": "Polymake#oscarci/testbranch/dontdelete",
+        "branch": "oscarci/testbranch/dontdelete",
+        "test": true
+      }
+    ],
+    "Oscar": [
+      {
+        "options": [],
+        "name": "Oscar#master",
+        "branch": "master",
+        "test": false
+      }
+    ],
+    "julia-version": [
+      "~1.10.0-0"
+    ],
+    "include": [],
+    "os": [
+      "ubuntu-latest"
+    ]
+  }
+}
