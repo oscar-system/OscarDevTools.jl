@@ -204,6 +204,7 @@ function oscar_develop(pkgs::Dict{String,Any}; dir=default_dev_dir, branch::Abst
    if isnothing(fork) && !isnothing(active_repo) && fork_from_repo(active_repo) != pkg_org(active_pkg)
       fork = fork_from_repo(active_repo)
    end
+   Pkg.Registry.update()
    withenv("JULIA_PKG_DEVDIR"=>"$dir", "JULIA_PKG_PRECOMPILE_AUTO"=>0) do
       Pkg.activate(joinpath(dir,"project")) do
          @info "populating development directory '$dir':"
