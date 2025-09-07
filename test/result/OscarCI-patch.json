@@ -1,0 +1,43 @@
+{
+  "repo": "Nemocas/AbstractAlgebra.jl",
+  "prnumber": 1811,
+  "cimat": {
+    "branches": [
+      {
+        "name": "matching: [Nemo#master,Hecke#master]",
+        "branch": "master",
+        "pkgs": {
+          "Nemo": {
+            "options": [],
+            "test": true
+          },
+          "Hecke": {
+            "options": [],
+            "test": true
+          }
+        }
+      },
+      {
+        "name": "[Nemo,Hecke]#release",
+        "branch": "release",
+        "pkgs": {
+          "Nemo": {
+            "options": [],
+            "test": true
+          },
+          "Hecke": {
+            "options": [],
+            "test": true
+          }
+        }
+      }
+    ],
+    "julia-version": [
+      "~1.10.0-0"
+    ],
+    "include": [],
+    "os": [
+      "ubuntu-latest"
+    ]
+  }
+}

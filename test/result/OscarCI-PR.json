@@ -1,0 +1,56 @@
+{
+  "repo": "oscar-system/Singular.jl",
+  "prnumber": 319,
+  "cimat": {
+    "Polymake": [
+      {
+        "options": [],
+        "name": "Polymake#release",
+        "branch": "release",
+        "test": true
+      }
+    ],
+    "Oscar": [
+      {
+        "options": [],
+        "name": "Oscar#master",
+        "branch": "master",
+        "test": false
+      }
+    ],
+    "Hecke": [
+      {
+        "options": [
+          "short"
+        ],
+        "name": "Hecke#release",
+        "branch": "release",
+        "test": false
+      }
+    ],
+    "julia-version": [
+      "~1.10.0-0"
+    ],
+    "include": [
+      {
+        "Polymake": {
+          "options": [],
+          "name": "Polymake#master",
+          "branch": "master",
+          "test": true
+        },
+        "Oscar": {
+          "options": [],
+          "name": "Oscar#master",
+          "branch": "master",
+          "test": false
+        },
+        "julia-version": "~1.10.0-0",
+        "os": "macos-latest"
+      }
+    ],
+    "os": [
+      "ubuntu-latest"
+    ]
+  }
+}

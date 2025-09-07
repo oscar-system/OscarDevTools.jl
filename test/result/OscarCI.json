@@ -1,0 +1,52 @@
+{
+  "cimat": {
+    "Polymake": [
+      {
+        "options": [],
+        "name": "Polymake#release",
+        "branch": "release",
+        "test": false
+      }
+    ],
+    "branches": [
+      {
+        "name": "[Oscar]#master",
+        "branch": "master",
+        "pkgs": {
+          "Oscar": {
+            "options": [],
+            "test": true
+          }
+        }
+      },
+      {
+        "name": "[Oscar]#release",
+        "branch": "release",
+        "pkgs": {
+          "Oscar": {
+            "options": [],
+            "test": true
+          }
+        }
+      }
+    ],
+    "julia-version": [
+      "~1.10.0-0"
+    ],
+    "include": [
+      {
+        "julia-version": "~1.10.0-0",
+        "os": "macos-latest",
+        "Singular": {
+          "options": [],
+          "name": "Singular#master",
+          "branch": "https://github.com/oscar-system/Singular.jl#master",
+          "test": true
+        }
+      }
+    ],
+    "os": [
+      "ubuntu-latest"
+    ]
+  }
+}
