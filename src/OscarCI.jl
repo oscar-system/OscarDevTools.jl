@@ -119,7 +119,8 @@ function ci_matrix(meta::Dict{String,Any}; pr=0, fork=nothing, active_repo=nothi
          if startswith(ghpr.head.ref, "$(ghpr.user.login)-patch-")
             @warn "PR branch name $(ghpr.head.ref) ignored for branch autodetection"
             if !("master" in global_branches)
-               pr_branch = ghpr.head.ref
+               fork = nothing
+               pr_branch = "master"
                global_branches[global_branches.=="<matching>"] .= "master"
             end
          else
@@ -227,7 +228,7 @@ function ci_matrix(meta::Dict{String,Any}; pr=0, fork=nothing, active_repo=nothi
                end
             end
             branchdicts[end]["name"] = "matching: ["*join(namestr_branches,",")*"]"
-            if !branchfound && "master" in global_branches
+            if !branchfound && "master" in global_branches && pr_branch != "master"
                # no matching branch found and master already exists
                pop!(branchdicts)
             end
