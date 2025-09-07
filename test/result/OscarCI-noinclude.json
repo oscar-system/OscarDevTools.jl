@@ -1,0 +1,19 @@
+{
+  "cimat": {
+    "Oscar": [
+      {
+        "options": [],
+        "name": "Oscar#master",
+        "branch": "master",
+        "test": true
+      }
+    ],
+    "julia-version": [
+      "~1.10.0-0"
+    ],
+    "include": [],
+    "os": [
+      "ubuntu-latest"
+    ]
+  }
+}

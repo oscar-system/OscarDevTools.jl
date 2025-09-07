@@ -1,0 +1,67 @@
+{
+  "repo": "Nemocas/AbstractAlgebra.jl",
+  "prnumber": 805,
+  "cimat": {
+    "branches": [
+      {
+        "name": "matching: [Nemo@wbhart#deprecate_coeffs,Oscar@wbhart#deprecate_coeffs,Hecke@wbhart#deprecate_coeffs,Singular@wbhart#deprecate_coeffs]",
+        "branch": "deprecate_coeffs",
+        "pkgs": {
+          "Nemo": {
+            "options": [],
+            "test": false,
+            "branch": "https://github.com/wbhart/Nemo.jl#deprecate_coeffs"
+          },
+          "Oscar": {
+            "options": [],
+            "test": false,
+            "branch": "https://github.com/wbhart/Oscar.jl#deprecate_coeffs"
+          },
+          "Hecke": {
+            "options": [
+              "short"
+            ],
+            "test": false,
+            "branch": "https://github.com/wbhart/Hecke.jl#deprecate_coeffs"
+          },
+          "Singular": {
+            "options": [],
+            "test": false,
+            "branch": "https://github.com/wbhart/Singular.jl#deprecate_coeffs"
+          }
+        }
+      },
+      {
+        "name": "[Nemo,Oscar,Hecke,Singular]#release",
+        "branch": "release",
+        "pkgs": {
+          "Nemo": {
+            "options": [],
+            "test": false
+          },
+          "Oscar": {
+            "options": [],
+            "test": false
+          },
+          "Hecke": {
+            "options": [
+              "short"
+            ],
+            "test": false
+          },
+          "Singular": {
+            "options": [],
+            "test": false
+          }
+        }
+      }
+    ],
+    "julia-version": [
+      "~1.10.0-0"
+    ],
+    "include": [],
+    "os": [
+      "ubuntu-latest"
+    ]
+  }
+}
