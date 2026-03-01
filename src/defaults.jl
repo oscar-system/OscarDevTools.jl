@@ -9,7 +9,7 @@ const default_branches = [ "<matching>", "release" ]
 # pkg-version -> pair of lower and upper bound, more precisely:
 # if pkgversion >= $version then check $lower <= julia_version < $upper
 # newest entries should come first
-# if no matching version is found the doctests will run with julia 1.6
+# if no matching version is found the doctests will run with julia 1.10
 const doctest_versions = Dict(
     :Oscar           => [v"0.14.0-DEV" => (v"1.10", v"1.12"),
                          v"0.13.0-DEV" => (v"1.9" , v"1.11"),

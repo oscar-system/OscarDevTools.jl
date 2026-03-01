@@ -17,15 +17,16 @@ function allow_doctests(pkg::Symbol, julia_version=VERSION)
    end
 
    # fallback to LTS
-   return v"1.6" <= julia_version < v"1.7"
+   return v"1.10" <= julia_version < v"1.11"
 end
 
 function doctest_cmd(pkg::Symbol)
    mod = getproperty(@__MODULE__, pkg)
    setup = QuoteNode(isdefined(mod, :doctestsetup) ? mod.doctestsetup() : :(using $(pkg)))
    filters = isdefined(mod, :doctestfilters) ? mod.doctestfilters() : []
+   docbuild = pkg === :Oscar ? :( Oscar.build_doc(;doctest=false, warnonly=false, open_browser=false) ) : :()
    return quote
-             DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters)
+             DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters); $docbuild;
           end
 end
 
