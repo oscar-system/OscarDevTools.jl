@@ -24,7 +24,16 @@ function doctest_cmd(pkg::Symbol)
    mod = getproperty(@__MODULE__, pkg)
    setup = QuoteNode(isdefined(mod, :doctestsetup) ? mod.doctestsetup() : :(using $(pkg)))
    filters = isdefined(mod, :doctestfilters) ? mod.doctestfilters() : []
-   docbuild = pkg === :Oscar ? :( Oscar.build_doc(;doctest=false, warnonly=false, open_browser=false) ) : :()
+   docbuild = pkg === :Oscar ?
+      :(
+        tmpdir = mktempdir();
+        projfile = joinpath(tmpdir, "Project.toml");
+        cp(joinpath(Oscar.oscardir, "docs", "Project.toml"), projfile);
+        chmod(projfile, filemode(projfile) | 0o200);
+        Oscar.doc_init(;path=tmpdir);
+        Oscar.build_doc(; doctest=false, warnonly=false, open_browser=false)
+       ) :
+      :()
    return quote
              DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters); $docbuild;
           end
