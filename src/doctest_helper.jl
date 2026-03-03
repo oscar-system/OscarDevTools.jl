@@ -7,41 +7,38 @@ include("defaults.jl")
 
 function allow_doctests(pkg::Symbol, julia_version=VERSION)
    dep = first(filter(d->d.name == string(pkg), collect(values(Pkg.dependencies()))))
+   docs_mode = :doctest
+   if pkg === :Oscar && dep.version > v"1.7.0"
+      docs_mode = :test_and_build
+   end
 
    if haskey(doctest_versions, pkg)
       for (pv, jvb) in doctest_versions[pkg]
          if dep.version >= pv
-            return first(jvb) <= julia_version < last(jvb)
+            return first(jvb) <= julia_version < last(jvb) ? docs_mode : nothing
          end
       end
    end
 
    # fallback to LTS
-   return v"1.10" <= julia_version < v"1.11"
+   return v"1.10" <= julia_version < v"1.11" ? docs_mode : nothing
 end
 
-function doctest_cmd(pkg::Symbol)
+function doctest_cmd(pkg::Symbol; docs_mode=:doctest)
    mod = getproperty(@__MODULE__, pkg)
    setup = QuoteNode(isdefined(mod, :doctestsetup) ? mod.doctestsetup() : :(using $(pkg)))
    filters = isdefined(mod, :doctestfilters) ? mod.doctestfilters() : []
-   docbuild = pkg === :Oscar ?
-      :(
-        tmpdir = mktempdir();
-        projfile = joinpath(tmpdir, "Project.toml");
-        cp(joinpath(Oscar.oscardir, "docs", "Project.toml"), projfile);
-        chmod(projfile, filemode(projfile) | 0o200);
-        Oscar.doc_init(;path=tmpdir);
-        Oscar.build_doc(; doctest=false, warnonly=false, open_browser=false)
-       ) :
-      :()
+   docbuild = pkg === :Oscar && docs_mode === :test_and_build ?
+      :( Oscar.build_doc(; doctest=false, warnonly=false, open_browser=false) ) : :()
    return quote
              DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters); $docbuild;
           end
 end
 
 macro maybe_doctest(pkg::Symbol)
-   if allow_doctests(pkg)
-      return doctest_cmd(pkg)
+   docs_mode = allow_doctests(pkg)
+   if docs_mode !== nothing
+      return doctest_cmd(pkg; docs_mode)
    else
       msg = "Skipping doctest for $pkg due to julia version ($VERSION) mismatch."
       if haskey(ENV, "GITHUB_STEP_SUMMARY")
