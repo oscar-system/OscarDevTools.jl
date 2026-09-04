@@ -28,10 +28,11 @@ function doctest_cmd(pkg::Symbol; docs_mode=:doctest)
    mod = getproperty(@__MODULE__, pkg)
    setup = QuoteNode(isdefined(mod, :doctestsetup) ? mod.doctestsetup() : :(using $(pkg)))
    filters = isdefined(mod, :doctestfilters) ? mod.doctestfilters() : []
+   docmeta = isdefined(mod, :docmeta) ? mod.docmeta() : Dict{Symbol, Any}()
    docbuild = pkg === :Oscar && docs_mode === :test_and_build ?
       :( Oscar.build_doc(; doctest=false, warnonly=false, open_browser=false) ) : :()
    return quote
-             DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters); $docbuild;
+             DocMeta.setdocmeta!($pkg, :DocTestSetup, $setup; recursive = true); doctest($pkg; doctestfilters=$filters, meta=$docmeta); $docbuild;
           end
 end
 
