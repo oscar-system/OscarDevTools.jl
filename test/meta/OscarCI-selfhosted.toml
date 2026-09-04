@@ -1,0 +1,21 @@
+title = "metadata for oscar CI run"
+
+# defaults for os, julia-version, and branches are set in OscarDevTools
+# '<matching>' will try to look up a matching branch for the branch of
+# the pull request and use master if that cannot be found
+[env]
+os = [ [ "Linux", "RPTU" ], "ubuntu-latest" ]
+julia-version = [ "~1.10.0-0" ]
+branches = [ "<matching>" ]
+
+# pkgs without branches specified will use the global branches axis
+# and not expand separately
+[pkgs]
+  [pkgs.Oscar]
+  test = true
+  testoptions = []
+
+  [pkgs.Singular]
+  branches = []
+  test = true
+  testoptions = []
